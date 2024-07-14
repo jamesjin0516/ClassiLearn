@@ -1,0 +1,11 @@
+*.gz
+*.png
+*.jpg
+*.tflite
+*.txt
+*.avi
+*.wav
+*.mp3
+*.mp4
+.vscode
+__pycache__
