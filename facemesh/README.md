@@ -21,7 +21,7 @@ facemesh/
 
 ### Feature Extraction Usage
 Face Mesh only provides the region of interest across frames. The HOG descriptor extract features from videos. Two strategies are implemented:
-1. Dense HOG: features are extracted per frame and either averaged or becomes inputs for [feature late fusion](../fusion_strategies.md)
+1. Dense HOG: features are extracted per frame and either averaged or becomes inputs for [feature late fusion](../fusion_strategies.md#feature-late-fusion)
 2. Sparse HOG: space-time interest points[^1][^2] across the video yields local features, pooled to video-level descriptors through [Bag of Words](https://scikit-learn.org/stable/auto_examples/text/plot_document_clustering.html)
 
 Use `python facemesh_character.py --help` for argument details
@@ -30,7 +30,7 @@ Use `python facemesh_character.py --help` for argument details
 - Outputs:video labels & 1 of the following depending on extraction configurations
     - **Video-level** features from dense HOG averaged across fraems
     - **Video-level** features from sparse HOG
-    - **Frame-level** features from dense HOG without average (must classify with [feature late fusion](../fusion_strategies.md))
+    - **Frame-level** features from dense HOG without average (must classify with [feature late fusion](../fusion_strategies.md#feature-late-fusion))
 
 [^1]:Laptev, I. On Space-Time Interest Points. Int J Comput Vision 64, 107–123 (2005).
 [^2]:https://github.com/theantimist/action-detection/

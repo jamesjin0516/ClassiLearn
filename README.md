@@ -7,20 +7,32 @@ This repository modularizes the familiarization with classical, non-ML/AI classi
 3. *Classification*: select reduced or original features and perform classification with [cross validation](https://scikit-learn.org/stable/modules/cross_validation.html) (CV) and [grid search](https://scikit-learn.org/stable/modules/grid_search.html), with various fusion strategies available.
 
 ### 1. Feature Extraction
-- audio: [DisVoice](https://github.com/jcvasquezc/DisVoice); extracts multiple types of speech features from audio input. ([details & examples](disvoice/disvoice_features.md))
-- video: [Face Mesh](https://github.com/google-ai-edge/mediapipe/blob/master/docs/solutions/face_mesh.md) & HOG descriptors; locates facial landmarks and define facial region. ([details & examples](facemesh/facemesh_features.md))
+- audio: [DisVoice](https://github.com/jcvasquezc/DisVoice); extracts multiple types of speech features from audio input. ([details & examples](disvoice/README.md))
+- video: [Face Mesh](https://github.com/google-ai-edge/mediapipe/blob/master/docs/solutions/face_mesh.md) & HOG descriptors; locates facial landmarks and define facial region. ([details & examples](facemesh/README.md))
 ### 2. Dimensionality Reduction
 Handled by `dim_reduce.py`. For individual argument description, run `python dim_reduce.py --help`
 - Input: manually specify the path to the outputted features of 1 of the modalities
-- Configurations: option to choose 1 of PCA or LDA; specification of feature type to preserve from original extraction. option of [early fusion](fusion_strategies.md)
+- Configurations: option to choose 1 of PCA or LDA; specification of feature type to preserve from original extraction. option of [early fusion](fusion_strategies.md#early-fusion)
 - Output: appropriately selected and simplified features. Whether any configurations are set, output matches default format of classification input.
 ### 3. Classification
 Run `python classification.py --help` for details
 - **Default** input: features file formatted by `dim_reduce.py`
 - **Custom** input: manually select original features extracted by 1 modality (*omit step 2*)
-- Configurations: option of [classifier late fusion](fusion_strategies.md), [feature late fusion](fusion_strategies.md), and [probability fusion](fusion_strategies.md)
+- Configurations: option of [classifier late fusion](fusion_strategies.md#classifier-late-fusion), [feature late fusion](fusion_strategies.md#feature-late-fusion), and [probability fusion](fusion_strategies.md#probability-fusion)
 - Output (stored and *overwritten* in `classification_output` directory):
     1. classification scores, as both mean & stdev and raw scores across CV folds
     2. graphic of class probabilities by classifiers
     3. graphic of train & test split and correctness within feature space, if 2-dimensional.
 
+## Dependencies
+Both the audio and video features require specific manually installed dependencies. Please refer to their details linked above.
+- disvoice (which requires specific versions of the following)
+    - python=3.10
+    - numpy=1.22.4
+    - scipy=1.11.4
+- opencv-python
+- matplotlib
+- mediapipe
+- pandas
+- scikit-image
+- scikit-learn
